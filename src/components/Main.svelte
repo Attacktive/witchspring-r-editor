@@ -69,7 +69,7 @@
 
 		const anchor = document.createElement("a");
 		anchor.href = url;
-		anchor.setAttribute("download", "cheated.sav");
+		anchor.setAttribute("download", "playerStat_999");
 		anchor.click();
 	};
 
