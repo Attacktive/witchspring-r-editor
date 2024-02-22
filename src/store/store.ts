@@ -11,18 +11,10 @@ const createStore = () => {
 
 	const reset = () => set(initialValue);
 
-	let state: SaveData;
-	subscribe((value: SaveData) => state = value);
-
-	const stringify = () => {
-		return JSON.stringify(state);
-	};
-
 	return {
 		set,
 		reset,
-		subscribe,
-		stringify
+		subscribe
 	};
 };
 
