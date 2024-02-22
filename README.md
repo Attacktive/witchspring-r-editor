@@ -1,38 +1,7 @@
-# create-svelte
+# WitchSpring R Editor
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0beae5fbd1164835ba8961af2ce4b2f9)](https://app.codacy.com/gh/Attacktive/witchspring-r-editor?utm_source=github.com&utm_medium=referral&utm_content=Attacktive/witchspring-r-editor&utm_campaign=Badge_Grade)
+[![CodeFactor](https://www.codefactor.io/repository/github/attacktive/witchspring-r-editor/badge)](https://www.codefactor.io/repository/github/attacktive/witchspring-r-editor)
+[![CodeQL](https://github.com/Attacktive/witchspring-r-editor/actions/workflows/codeql-analysis.yaml/badge.svg)](https://github.com/Attacktive/witchspring-r-editor/actions/workflows/codeql-analysis.yaml)
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+It's a save file editor of the game [*WitchSpring R*](https://store.steampowered.com/app/1958220/WitchSpring_R/).
