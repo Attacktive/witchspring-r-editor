@@ -7,7 +7,6 @@
 
 	const textDecoder = new TextDecoder();
 
-	let fileLoadKey = {};
 	let toShowSpinner = false;
 	let files: FileList | undefined;
 
@@ -31,12 +30,12 @@
 		if (file) {
 			output = JSON.stringify(value);
 		} else {
-			output = "";
+			output = "{}";
 		}
 	});
 
 	const resetFile = () => {
-		output = "";
+		output = "{}";
 		resetComponents();
 	};
 
@@ -74,7 +73,6 @@
 	};
 
 	const resetComponents = () => {
-		fileLoadKey = {};
 		files = undefined;
 		store.reset();
 	};
@@ -96,9 +94,7 @@
 {/if}
 
 <div class="grid grid-cols-12 mt-2">
-	{#key fileLoadKey}
-		<Fileupload bind:files={files} class="col-span-3"/>
-	{/key}
+	<Fileupload bind:files={files} class="col-span-3"/>
 	<Button class="mx-8 col-span-2" disabled={!file} on:click={resetFile}>Reset</Button>
 	<Button class="mx-1 col-span-2" disabled={!file} on:click={download}>Download</Button>
 </div>
