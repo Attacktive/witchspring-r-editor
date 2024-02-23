@@ -20,7 +20,7 @@
 		} else {
 			toShowAlert = toShow;
 		}
-	}
+	};
 
 	const validateFileName = (fileName: string) => /^playerStat_\d+$/.test(fileName);
 
@@ -103,7 +103,7 @@
 <svelte:window on:scroll={onScroll}/>
 
 {#if toShowSpinner}
-	<div class="overlay">
+	<div class="fixed w-full h-full bg-transparent">
 		<Img src={nyancat} class="h-full"/>
 	</div>
 {/if}
@@ -115,11 +115,11 @@
 </div>
 {#if toShowAlert}
 	<div class="grid grid-cols-4">
-	<Alert class="mt-1 mb-3">
-		<p>You might have loaded a wrong file.</p>
-		<p>It's named 'playerStat_xxx' by default.</p>
-		<Button size="sm" class="mt-2" on:click={() => toggleAlert(false)}>Got it</Button>
-	</Alert>
+		<Alert class="mt-1 mb-3">
+			<p>You might have loaded a wrong file.</p>
+			<p>It's named 'playerStat_xxx' by default.</p>
+			<Button size="sm" class="mt-2" on:click={() => toggleAlert(false)}>Got it</Button>
+		</Alert>
 	</div>
 {/if}
 <div class="mt-4">
@@ -132,26 +132,8 @@
 		</TabItem>
 	</Tabs>
 </div>
-<div class="mt-4">
-	<Textarea value={output} rows="8" readonly/>
-</div>
-{#if toShowTopButton}
-	<div class="fixed">
+<div class="fixed bottom-0 w-full">
+	{#if toShowTopButton}
 		<Button on:click={scrollToTop}>△</Button>
-	</div>
-{/if}
-
-<style>
-	.overlay {
-		position: fixed;
-		width: 100%;
-		height: 100%;
-		background-color: rgb(0 0 0 / 22.22%);
-	}
-
-	.fixed {
-		position: fixed;
-		left: 50%;
-		bottom: 10px;
-	}
-</style>
+	{/if}
+</div>
