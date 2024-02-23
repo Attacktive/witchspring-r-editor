@@ -7,7 +7,7 @@
 
 It's a save file editor of the game [*WitchSpring R*](https://store.steampowered.com/app/1958220/WitchSpring_R/).
 
-### How to Use
+## How to Use
 
 1. Hit the button 'Choose File'
 2. Navigate to the path to the save files
