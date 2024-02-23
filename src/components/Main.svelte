@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Fileupload, Img, TabItem, Tabs, Textarea } from "flowbite-svelte";
+	import { Alert, Button, Fileupload, Img, TabItem, Tabs, Textarea } from "flowbite-svelte";
 	import { store } from "$store/store";
 	import Basic from "$components/tabs/Basic.svelte";
 	import Items from "$components/tabs/Items.svelte";
@@ -13,8 +13,23 @@
 	let file: File | undefined;
 	$: file = files?.[0];
 
+	let toShowAlert = false;
+	const toggleAlert = (toShow?: boolean) => {
+		if (toShow === undefined) {
+			toShowAlert = !toShowAlert;
+		} else {
+			toShowAlert = toShow;
+		}
+	}
+
+	const validateFileName = (fileName: string) => /^playerStat_\d+$/.test(fileName);
+
 	$: {
 		if (file) {
+			const { name } = file;
+			const fileNameIsValid = validateFileName(name);
+			toggleAlert(!fileNameIsValid);
+
 			file.stream()
 				.getReader()
 				.read()
@@ -98,6 +113,15 @@
 	<Button class="mx-8 col-span-2" disabled={!file} on:click={resetFile}>Reset</Button>
 	<Button class="mx-1 col-span-2" disabled={!file} on:click={download}>Download</Button>
 </div>
+{#if toShowAlert}
+	<div class="grid grid-cols-4">
+	<Alert class="mt-1 mb-3">
+		<p>You might have loaded a wrong file.</p>
+		<p>It's named 'playerStat_xxx' by default.</p>
+		<Button size="sm" class="mt-2" on:click={() => toggleAlert(false)}>Got it</Button>
+	</Alert>
+	</div>
+{/if}
 <div class="mt-4">
 	<Tabs>
 		<TabItem title="Basic" open>
