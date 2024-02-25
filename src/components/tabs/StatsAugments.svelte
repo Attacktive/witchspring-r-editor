@@ -4,8 +4,10 @@
 	import { statsAugmentTags } from "$types/stats-augment";
 
 	const statsAugmentTagOptions = statsAugmentTags.map(statsAugmentTag => {
+		const respelled = statsAugmentTag.replace(/ACCESSARY/, "ACCESSORY");
+
 		return {
-			name: statsAugmentTag,
+			name: respelled,
 			value: statsAugmentTag
 		};
 	});
