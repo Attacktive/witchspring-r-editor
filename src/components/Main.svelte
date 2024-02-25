@@ -105,16 +105,7 @@
 		files = undefined;
 		saveData.reset();
 	};
-
-	let toShowTopButton: boolean;
-	const onScroll = () => {
-		toShowTopButton = document?.documentElement.scrollTop > 50;
-	};
-
-	const scrollToTop = () => document?.documentElement.scrollIntoView();
 </script>
-
-<svelte:window on:scroll={onScroll}/>
 
 {#if toShowSpinner}
 	<div class="fixed w-full h-full bg-transparent">
@@ -143,9 +134,4 @@
 			<Items/>
 		</TabItem>
 	</Tabs>
-</div>
-<div class="fixed bottom-0 w-full">
-	{#if toShowTopButton}
-		<Button on:click={scrollToTop}>△</Button>
-	{/if}
 </div>

@@ -1,15 +1,25 @@
-<script>
+<script lang="ts">
 	import "$/app.css";
-	import { Footer, FooterLink, FooterLinkGroup, Textarea } from "flowbite-svelte";
+	import { Button, Footer, FooterLink, FooterLinkGroup, Textarea } from "flowbite-svelte";
 	import { saveDataJson } from "$store/save-data";
 	import github from "$lib/assets/github.svg";
+
+	let mainElement: HTMLElement;
+	let toShowTopButton: boolean;
+	const onScroll = () => {
+		toShowTopButton = mainElement.scrollTop > 50;
+	};
+	const scrollToTop = () => mainElement.scrollTo(0, 0);
 </script>
 
-<div class="flex flex-col h-screen overflow-hidden">
-	<header class="w-full text-center">
-		<h1 class="text-4xl">WitchSpring R Editor</h1>
+<div class="px-3 flex flex-col h-screen overflow-hidden">
+	<header class="w-full my-5">
+		<h1 class="text-center text-4xl">WitchSpring R Editor</h1>
+		{#if toShowTopButton}
+			<Button class="fixed right-10" on:click={scrollToTop}>△</Button>
+		{/if}
 	</header>
-	<main class="flex-1 overflow-y-scroll">
+	<main bind:this={mainElement} class="flex-1 overflow-y-scroll" on:scroll={onScroll}>
 		<slot/>
 	</main>
 	<Footer class="w-full">
