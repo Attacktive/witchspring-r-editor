@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { SelectOptionType } from "flowbite-svelte";
 	import type { PetId } from "$types/pet";
-	import { store } from "$store/store";
+	import { saveData } from "$store/save-data";
 	import { Checkbox, Input, Label, NumberInput, Select } from "flowbite-svelte";
 	import { petIds } from "$types/pet";
 
@@ -21,77 +21,77 @@
 </script>
 <div class="my-2">
 	<Label>Player Object ID</Label>
-	<Input bind:value={$store.playerObjID}/>
+	<Input bind:value={$saveData.playerObjID}/>
 </div>
 <div class="my-2">
 	<Label>Player Object ID (original)</Label>
-	<Input bind:value={$store.playerObjID_Original}/>
+	<Input bind:value={$saveData.playerObjID_Original}/>
 </div>
 <div class="my-2">
 	<Label>Dress ID</Label>
-	<Input bind:value={$store.dressID}/>
+	<Input bind:value={$saveData.dressID}/>
 </div>
 <div class="my-2">
 	<Label>Max HP</Label>
-	<NumberInput bind:value={$store.maxHp} step="1"/>
+	<NumberInput bind:value={$saveData.maxHp} step="1"/>
 </div>
 <div class="my-2">
 	<Label>HP</Label>
-	<NumberInput bind:value={$store.hp} step="1"/>
+	<NumberInput bind:value={$saveData.hp} step="1"/>
 </div>
 <div class="my-2">
 	<Label>Max MP</Label>
-	<NumberInput bind:value={$store.maxMp} step="1"/>
+	<NumberInput bind:value={$saveData.maxMp} step="1"/>
 </div>
 <div class="my-2">
 	<Label>MP</Label>
-	<NumberInput bind:value={$store.mp} step="1"/>
+	<NumberInput bind:value={$saveData.mp} step="1"/>
 </div>
 <div class="my-2">
 	<Label>SP</Label>
-	<NumberInput bind:value={$store.sp} step="1"/>
+	<NumberInput bind:value={$saveData.sp} step="1"/>
 </div>
 <div class="my-2">
 	<Label>Fame</Label>
-	<NumberInput bind:value={$store.fame} step="1"/>
+	<NumberInput bind:value={$saveData.fame} step="1"/>
 </div>
 <div class="my-2">
 	<Label>Battle EXP</Label>
-	<NumberInput bind:value={$store.battleEXP} step="1"/>
+	<NumberInput bind:value={$saveData.battleEXP} step="1"/>
 </div>
 <div class="my-2">
 	<Label>Body Level</Label>
-	<NumberInput bind:value={$store.bodyLevel} step="1"/>
+	<NumberInput bind:value={$saveData.bodyLevel} step="1"/>
 </div>
 <div class="my-2">
 	<Label>Mental Level</Label>
-	<NumberInput bind:value={$store.mindLevel} step="1"/>
+	<NumberInput bind:value={$saveData.mindLevel} step="1"/>
 </div>
 <div class="my-2">
 	<Label>Physical Training Count</Label>
-	<NumberInput bind:value={$store.bodyTrainingCount} step="1"/>
+	<NumberInput bind:value={$saveData.bodyTrainingCount} step="1"/>
 </div>
 <div class="my-2">
 	<Label>Mental Training Count</Label>
-	<NumberInput bind:value={$store.mindTrainingCount} step="1"/>
+	<NumberInput bind:value={$saveData.mindTrainingCount} step="1"/>
 </div>
 <div class="my-2">
 	<Label>Weapon Charging Speed Factor</Label>
-	<NumberInput bind:value={$store.weaponChargingSpeed} step="1"/>
+	<NumberInput bind:value={$saveData.weaponChargingSpeed} step="1"/>
 </div>
 <div class="my-2">
 	<Label>Walking Speed Factor</Label>
-	<NumberInput bind:value={$store.walkSpeed} step="1"/>
+	<NumberInput bind:value={$saveData.walkSpeed} step="1"/>
 </div>
 <div class="my-2">
 	<Label>Gold</Label>
-	<NumberInput bind:value={$store.gold} step="1"/>
+	<NumberInput bind:value={$saveData.gold} step="1"/>
 </div>
 <div class="my-2">
 	<Label>Has Black Joe</Label>
-	<Checkbox bind:checked={$store.blackJoe}/>
+	<Checkbox bind:checked={$saveData.blackJoe}/>
 </div>
 <div class="my-2">
 	<Label>Current Pet</Label>
-	<Select bind:value={$store.nowPet} items={petOptions}/>
+	<Select bind:value={$saveData.nowPet} items={petOptions}/>
 </div>

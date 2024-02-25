@@ -1,6 +1,9 @@
 <script lang="ts">
-	import { Alert, Button, Fileupload, Img, TabItem, Tabs, Textarea } from "flowbite-svelte";
-	import { store } from "$store/store";
+	import type { ComponentType } from "svelte";
+	import { Alert, Button, Fileupload, Img, TabItem, Tabs } from "flowbite-svelte";
+	import { saveData, saveDataJson } from "$store/save-data";
+	import SuspiciousFileName from "$components/alert/SuspiciousFileName.svelte";
+	import DownloadError from "$components/alert/DownloadError.svelte";
 	import Basic from "$components/tabs/Basic.svelte";
 	import Items from "$components/tabs/Items.svelte";
 	import nyancat from "$lib/assets/nyancat.gif";
@@ -13,14 +16,34 @@
 	let file: File | undefined;
 	$: file = files?.[0];
 
+	interface AlertParameters {
+		alertType: AlertType;
+		errorMessage?: string;
+	}
+
+	type AlertType = "suspiciousFileName" | "downloadError";
+
 	let toShowAlert = false;
-	const toggleAlert = (toShow?: boolean) => {
-		if (toShow === undefined) {
-			toShowAlert = !toShowAlert;
-		} else {
-			toShowAlert = toShow;
+	let alertComponent: ComponentType | undefined;
+	let alertErrorMessage: string | undefined;
+	const showAlert = ({ alertType, errorMessage }: AlertParameters) => {
+		switch (alertType) {
+			case "suspiciousFileName":
+				alertComponent = SuspiciousFileName;
+				break;
+			case "downloadError":
+				alertComponent = DownloadError;
+				break;
 		}
+
+		alertErrorMessage = errorMessage;
+		toShowAlert = true;
 	};
+	const closeAlert = () => {
+		toShowAlert = false;
+		alertComponent = undefined;
+		alertErrorMessage = undefined;
+	}
 
 	const validateFileName = (fileName: string) => /^playerStat_\d+$/.test(fileName);
 
@@ -28,38 +51,26 @@
 		if (file) {
 			const { name } = file;
 			const fileNameIsValid = validateFileName(name);
-			toggleAlert(!fileNameIsValid);
+			if (!fileNameIsValid) {
+				showAlert({ alertType: "suspiciousFileName" });
+			}
 
 			file.stream()
 				.getReader()
 				.read()
 				.then(fileStreamResult => textDecoder.decode(fileStreamResult.value))
-				.then(content => store.set(JSON.parse(content)));
+				.then(content => saveData.set(JSON.parse(content)));
 		} else {
-			resetFile();
+			resetComponents();
 		}
 	}
-
-	let output: string;
-	store.subscribe(value => {
-		if (file) {
-			output = JSON.stringify(value);
-		} else {
-			output = "{}";
-		}
-	});
-
-	const resetFile = () => {
-		output = "{}";
-		resetComponents();
-	};
 
 	const download = async () => {
 		toShowSpinner = true;
 
 		try {
 			const blob = new Blob(
-				[output],
+				[$saveDataJson],
 				{ type: "application/json" }
 			);
 
@@ -67,11 +78,14 @@
 		} catch (error) {
 			console.error(error);
 
+			let output;
 			if (error instanceof Error) {
 				output = error.toString();
 			} else {
 				output = `A non-Error "something" is thrown: ${error}`;
 			}
+
+			showAlert({ alertType: "downloadError", errorMessage: output });
 		} finally {
 			toShowSpinner = false;
 		}
@@ -89,7 +103,7 @@
 
 	const resetComponents = () => {
 		files = undefined;
-		store.reset();
+		saveData.reset();
 	};
 
 	let toShowTopButton: boolean;
@@ -110,15 +124,13 @@
 
 <div class="grid grid-cols-12 mt-2">
 	<Fileupload bind:files={files} class="col-span-3"/>
-	<Button class="mx-8 col-span-2" disabled={!file} on:click={resetFile}>Reset</Button>
+	<Button class="mx-8 col-span-2" disabled={!file} on:click={resetComponents}>Reset</Button>
 	<Button class="mx-1 col-span-2" disabled={!file} on:click={download}>Download</Button>
 </div>
 {#if toShowAlert}
 	<div class="grid grid-cols-4">
 		<Alert class="mt-1 mb-3">
-			<p>You might have loaded a wrong file.</p>
-			<p>It's named 'playerStat_xxx' by default.</p>
-			<Button size="sm" class="mt-2" on:click={() => toggleAlert(false)}>Got it</Button>
+			<svelte:component this={alertComponent} message={alertErrorMessage} on:close={closeAlert}/>
 		</Alert>
 	</div>
 {/if}
