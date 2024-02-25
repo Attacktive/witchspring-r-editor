@@ -6,6 +6,7 @@
 	import DownloadError from "$components/alert/DownloadError.svelte";
 	import Basic from "$components/tabs/Basic.svelte";
 	import Items from "$components/tabs/Items.svelte";
+	import StatsAugments from "$components/tabs/StatsAugments.svelte";
 	import nyancat from "$lib/assets/nyancat.gif";
 
 	const textDecoder = new TextDecoder();
@@ -132,6 +133,9 @@
 		</TabItem>
 		<TabItem title="Items">
 			<Items/>
+		</TabItem>
+		<TabItem title="Stats Augments">
+			<StatsAugments/>
 		</TabItem>
 	</Tabs>
 </div>

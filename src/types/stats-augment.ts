@@ -1,7 +1,8 @@
+export const statsAugmentTags = ["ACCESSARY", "ARMOR", "DRESS", "SHIELD", "SHOES", "SPECIAL", "WEAPON"];
+
 export interface StatsAugment {
 	id: string;
-	// TODO: to union of string literals
-	tag: string;
+	tag: "ACCESSARY" | "ARMOR" | "DRESS" | "SHIELD" | "SHOES" | "SPECIAL" | "WEAPON";
 	point_hp: number;
 	rate_hp: number;
 	point_mp: number;
