@@ -52,6 +52,18 @@
 	<NumberInput bind:value={$saveData.sp} step="1"/>
 </div>
 <div class="my-2">
+	<Label>Strength</Label>
+	<NumberInput bind:value={$saveData.str} step="1"/>
+</div>
+<div class="my-2">
+	<Label>Defence</Label>
+	<NumberInput bind:value={$saveData.def} step="1"/>
+</div>
+<div class="my-2">
+	<Label>Agility</Label>
+	<NumberInput bind:value={$saveData.agt} step="1"/>
+</div>
+<div class="my-2">
 	<Label>Fame</Label>
 	<NumberInput bind:value={$saveData.fame} step="1"/>
 </div>
