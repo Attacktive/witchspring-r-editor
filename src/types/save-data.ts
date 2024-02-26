@@ -10,6 +10,12 @@ import type { Blessing } from "$types/blessing";
 import type { Pet } from "$types/pet";
 import type { TrainingLevel } from "$types/training";
 
+export const primarySpells: PrimarySpell[] = ["MAGICCIRCLE_MindControl", "MAGICCIRCLE_Fire_1", "MAGICCIRCLE_Fire_3", "MAGICCIRCLE_Fire_4", "MAGICCIRCLE_Fire_5", "MAGICCIRCLE_Fire_7", "MAGICCIRCLE_Thunder_3", "MAGICCIRCLE_Thunder_4", "MAGICCIRCLE_Thunder_5", "MAGICCIRCLE_Thunder_6", "MAGICCIRCLE_Thunder_7", "MAGICCIRCLE_Ice_4", "MAGICCIRCLE_Ice_5", "MAGICCIRCLE_Ice_6", "MAGICCIRCLE_Ice_7", "MAGICCIRCLE_Ekar", "MAGICCIRCLE_Temar"];
+export const subSpells: SubSpell[] = ["MAGICCIRCLE_Double_3", "MAGICCIRCLE_Double_5", "MAGICCIRCLE_Double_7", "MAGICCIRCLE_Save_5", "MAGICCIRCLE_Save_7"];
+
+export type PrimarySpell = undefined | "MAGICCIRCLE_MindControl" | "MAGICCIRCLE_Fire_1" | "MAGICCIRCLE_Fire_3" | "MAGICCIRCLE_Fire_4" | "MAGICCIRCLE_Fire_5" | "MAGICCIRCLE_Fire_7" | "MAGICCIRCLE_Thunder_3" | "MAGICCIRCLE_Thunder_4"| "MAGICCIRCLE_Thunder_5"| "MAGICCIRCLE_Thunder_6" | "MAGICCIRCLE_Thunder_7" | "MAGICCIRCLE_Ice_4" | "MAGICCIRCLE_Ice_5" | "MAGICCIRCLE_Ice_6" | "MAGICCIRCLE_Ice_7" | "MAGICCIRCLE_Ekar" | "MAGICCIRCLE_Temar";
+export type SubSpell = undefined | "MAGICCIRCLE_Double_3" | "MAGICCIRCLE_Double_5" | "MAGICCIRCLE_Double_7" | "MAGICCIRCLE_Save_5" | "MAGICCIRCLE_Save_7";
+
 export type SaveData = BasicData & {
 	equipList: EquippedItem[];
 	plusStatList: StatsAugment[];
@@ -17,12 +23,9 @@ export type SaveData = BasicData & {
 	myItemList_fast: string[];
 	myItemList_recent: string[];
 	bookList: SpellBook[];
-	// TODO: to union of string literals
-	magicSlot_main: [string | undefined, string | undefined, string | undefined];
-	// TODO: to union of string literals
-	magicSlot_normal: [string | undefined, string | undefined, string | undefined];
-	// TODO: to union of string literals
-	magicSlot_sub: [string | undefined, string | undefined, string | undefined];
+	magicSlot_main: [PrimarySpell, SubSpell, SubSpell];
+	magicSlot_normal: [PrimarySpell, SubSpell, SubSpell];
+	magicSlot_sub: [PrimarySpell, SubSpell, SubSpell];
 	battleAction: BattleAction[];
 	stickAction: StickAction[];
 	specialSkill: SpecialSkill[];

@@ -1,8 +1,10 @@
-export const statsAugmentTags = ["ACCESSARY", "ARMOR", "DRESS", "SHIELD", "SHOES", "SPECIAL", "WEAPON"];
+export const statsAugmentTags: StatsAugmentTag[] = ["ACCESSARY", "ARMOR", "DRESS", "SHIELD", "SHOES", "SPECIAL", "WEAPON"];
+
+export type StatsAugmentTag = "ACCESSARY" | "ARMOR" | "DRESS" | "SHIELD" | "SHOES" | "SPECIAL" | "WEAPON";
 
 export interface StatsAugment {
 	id: string;
-	tag: "ACCESSARY" | "ARMOR" | "DRESS" | "SHIELD" | "SHOES" | "SPECIAL" | "WEAPON";
+	tag: StatsAugmentTag;
 	point_hp: number;
 	rate_hp: number;
 	point_mp: number;

@@ -11,7 +11,7 @@ export function getItemCategory(categoryNumber: number) {
 		case 1:
 			return "Booster";
 		case 2:
-			return "Magic";
+			return "Spell";
 		case 3:
 			return "Tome";
 		case 4:
