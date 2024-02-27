@@ -1,6 +1,7 @@
 <script lang="ts">
 	import "$/app.css";
 	import { Button, Footer, FooterLink, FooterLinkGroup, Textarea } from "flowbite-svelte";
+	import { CaretUpSolid } from "flowbite-svelte-icons";
 	import { saveDataJson } from "$store/save-data";
 	import github from "$lib/assets/github.svg";
 
@@ -16,7 +17,9 @@
 	<header class="w-full my-5">
 		<h1 class="text-center text-4xl">WitchSpring R Editor</h1>
 		{#if toShowTopButton}
-			<Button class="fixed right-10" on:click={scrollToTop}>△</Button>
+			<Button class="fixed right-10" on:click={scrollToTop}>
+				<CaretUpSolid/>
+			</Button>
 		{/if}
 	</header>
 	<main bind:this={mainElement} class="flex-1 overflow-y-scroll" on:scroll={onScroll}>

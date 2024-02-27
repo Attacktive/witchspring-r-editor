@@ -1,4 +1,4 @@
-export const statsAugmentTags: StatsAugmentTag[] = ["ACCESSARY", "ARMOR", "DRESS", "SHIELD", "SHOES", "SPECIAL", "WEAPON"];
+export const statsAugmentTags: readonly StatsAugmentTag[] = Object.freeze(["ACCESSARY", "ARMOR", "DRESS", "SHIELD", "SHOES", "SPECIAL", "WEAPON"]);
 
 export type StatsAugmentTag = "ACCESSARY" | "ARMOR" | "DRESS" | "SHIELD" | "SHOES" | "SPECIAL" | "WEAPON";
 
