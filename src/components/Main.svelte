@@ -7,6 +7,7 @@
 	import Basic from "$components/tabs/Basic.svelte";
 	import Items from "$components/tabs/Items.svelte";
 	import StatsAugments from "$components/tabs/StatsAugments.svelte";
+	import Spells from "$components/tabs/Spells.svelte";
 	import nyancat from "$lib/assets/nyancat.gif";
 
 	const textDecoder = new TextDecoder();
@@ -18,7 +19,8 @@
 	$: file = files?.[0];
 
 	interface AlertParameters {
-		alertType: AlertType;
+		toShow?: boolean;
+		alertType?: AlertType;
 		errorMessage?: string;
 	}
 
@@ -27,7 +29,7 @@
 	let toShowAlert = false;
 	let alertComponent: ComponentType | undefined;
 	let alertErrorMessage: string | undefined;
-	const showAlert = ({ alertType, errorMessage }: AlertParameters) => {
+	const showAlert = ({ toShow = true, alertType, errorMessage }: AlertParameters) => {
 		switch (alertType) {
 			case "suspiciousFileName":
 				alertComponent = SuspiciousFileName;
@@ -38,13 +40,13 @@
 		}
 
 		alertErrorMessage = errorMessage;
-		toShowAlert = true;
+		toShowAlert = toShow;
 	};
 	const closeAlert = () => {
 		toShowAlert = false;
 		alertComponent = undefined;
 		alertErrorMessage = undefined;
-	}
+	};
 
 	const validateFileName = (fileName: string) => /^playerStat_\d+$/.test(fileName);
 
@@ -52,7 +54,9 @@
 		if (file) {
 			const { name } = file;
 			const fileNameIsValid = validateFileName(name);
-			if (!fileNameIsValid) {
+			if (fileNameIsValid) {
+				showAlert({ toShow: false });
+			} else {
 				showAlert({ alertType: "suspiciousFileName" });
 			}
 
@@ -136,6 +140,9 @@
 		</TabItem>
 		<TabItem title="Stats Augments">
 			<StatsAugments/>
+		</TabItem>
+		<TabItem title="Spells">
+			<Spells/>
 		</TabItem>
 	</Tabs>
 </div>

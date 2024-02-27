@@ -12,6 +12,7 @@
 		};
 	});
 </script>
+
 {#if $saveData.plusStatList.length > 0}
 	<Accordion>
 		{#each $saveData.plusStatList as statsAugment, index (`statsAugment-${index}`)}
