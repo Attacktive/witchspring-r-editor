@@ -55,6 +55,8 @@
 
 	$: {
 		if (file) {
+			toShowSpinner = true;
+
 			const { name } = file;
 			const fileNameIsValid = validateFileName(name);
 			if (fileNameIsValid) {
@@ -67,7 +69,14 @@
 				.getReader()
 				.read()
 				.then(fileStreamResult => textDecoder.decode(fileStreamResult.value))
-				.then(content => saveData.set(JSON.parse(content)));
+				.then(content => JSON.parse(content))
+				.then(object => saveData.set(object))
+				.catch(error => {
+					console.error(error);
+					console.error(error.message);
+					showAlert({ errorMessage: error.message });
+				})
+				.finally(() => toShowSpinner = false);
 		} else {
 			resetComponents();
 		}
@@ -130,7 +139,12 @@
 	{#if toShowAlert}
 		<div class="grid grid-cols-4">
 			<Alert class="mt-1 mb-3">
-				<svelte:component this={alertComponent} message={alertErrorMessage} on:close={closeAlert}/>
+				{#if alertComponent === undefined}
+					<p>{alertErrorMessage}</p>
+					<Button size="sm" class="mt-2" on:click={closeAlert}>Got it</Button>
+				{:else}
+					<svelte:component this={alertComponent} message={alertErrorMessage} on:close={closeAlert}/>
+				{/if}
 			</Alert>
 		</div>
 	{/if}
