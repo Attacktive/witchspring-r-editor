@@ -13,10 +13,13 @@
 	const textDecoder = new TextDecoder();
 
 	let toShowSpinner = false;
-	let files: FileList | undefined;
 
+	let files: FileList | undefined;
 	let file: File | undefined;
 	$: file = files?.[0];
+
+	let toShowBlocker = true;
+	$: toShowBlocker = !file;
 
 	interface AlertParameters {
 		toShow?: boolean;
@@ -123,26 +126,31 @@
 	<Button class="mx-8 col-span-2" disabled={!file} on:click={resetComponents}>Reset</Button>
 	<Button class="mx-1 col-span-2" disabled={!file} on:click={download}>Download</Button>
 </div>
-{#if toShowAlert}
-	<div class="grid grid-cols-4">
-		<Alert class="mt-1 mb-3">
-			<svelte:component this={alertComponent} message={alertErrorMessage} on:close={closeAlert}/>
-		</Alert>
+<main class="relative">
+	{#if toShowAlert}
+		<div class="grid grid-cols-4">
+			<Alert class="mt-1 mb-3">
+				<svelte:component this={alertComponent} message={alertErrorMessage} on:close={closeAlert}/>
+			</Alert>
+		</div>
+	{/if}
+	{#if toShowBlocker}
+		<div class="fixed w-full h-full bg-gray-200 bg-opacity-50"></div>
+	{/if}
+	<div class="mt-4">
+		<Tabs>
+			<TabItem title="Basic" open>
+				<Basic/>
+			</TabItem>
+			<TabItem title="Items">
+				<Items/>
+			</TabItem>
+			<TabItem title="Stats Augments">
+				<StatsAugments/>
+			</TabItem>
+			<TabItem title="Spells">
+				<Spells/>
+			</TabItem>
+		</Tabs>
 	</div>
-{/if}
-<div class="mt-4">
-	<Tabs>
-		<TabItem title="Basic" open>
-			<Basic/>
-		</TabItem>
-		<TabItem title="Items">
-			<Items/>
-		</TabItem>
-		<TabItem title="Stats Augments">
-			<StatsAugments/>
-		</TabItem>
-		<TabItem title="Spells">
-			<Spells/>
-		</TabItem>
-	</Tabs>
-</div>
+</main>

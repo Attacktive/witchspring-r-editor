@@ -22,10 +22,10 @@
 			</Button>
 		{/if}
 	</header>
-	<main bind:this={mainElement} class="flex-1 overflow-y-scroll" on:scroll={onScroll}>
+	<main bind:this={mainElement} class="flex-1 overflow-y-scroll my-2" on:scroll={onScroll}>
 		<slot/>
 	</main>
-	<Footer class="w-full">
+	<Footer class="w-full mt-2">
 		<Textarea class="v-full font-mono" value={$saveDataJson} rows="8" readonly/>
 		<FooterLinkGroup ulClass="flex flex-row-reverse">
 			<FooterLink href="https://github.com/Attacktive/witchspring-r-editor">
