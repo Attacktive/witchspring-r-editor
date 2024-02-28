@@ -113,6 +113,7 @@ export const nonExhaustItemIdList: readonly string[] = Object.freeze([
 	"Leaf_MiniGolem",
 	"Leaf_MiniGolem2",
 	"LifeStone",
+	"LightningCrystal",
 	"LightningDragonHorn",
 	"LivyaMark",
 	"LoveAntlers",
