@@ -24,7 +24,7 @@
 	let newItem = generateNewItem();
 
 	const createItem = () => {
-		$saveData.myItemList.push(newItem);
+		$saveData.myItemList = [...$saveData.myItemList, newItem]
 		newItem = generateNewItem();
 	};
 
