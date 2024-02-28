@@ -3,7 +3,7 @@
 	import { Accordion, AccordionItem, Button, Input, Label, Modal, NumberInput, Select, SpeedDial, SpeedDialButton } from "flowbite-svelte";
 	import { CirclePlusSolid, TrashBinOutline } from "flowbite-svelte-icons";
 	import { saveData } from "$store/save-data";
-	import { getItemCategory, itemCategories, nonExhaustItemIdList } from "$types/item";
+	import { getItemCategory, itemCategories, nonExhaustiveItemIdList } from "$types/item";
 
 	const categoryOptions = itemCategories.map(itemCategory => ({
 		name: itemCategory.text,
@@ -34,7 +34,7 @@
 </script>
 
 <datalist id="item-id-list">
-	{#each nonExhaustItemIdList as itemId}
+	{#each nonExhaustiveItemIdList as itemId}
 		<option>{itemId}</option>
 	{/each}
 </datalist>

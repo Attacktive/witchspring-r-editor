@@ -3,7 +3,7 @@ interface ItemCategoryMapping {
 	text: "Consumable" | "Booster" | "Spell" | "Tome" | "Equipment" | "Key" | "In-battle Consumable" | "Ingredient" | "⁉ IncreasingStoneRed" | "Stimulus";
 }
 
-export const nonExhaustItemIdList: readonly string[] = Object.freeze([
+export const nonExhaustiveItemIdList: readonly string[] = Object.freeze([
 	"AcientLightningDragonHorn",
 	"AgilityRing",
 	"AgtStimulus",
