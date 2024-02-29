@@ -1,9 +1,7 @@
 <script lang="ts">
-	import type { ComponentType } from "svelte";
 	import { Alert, Button, Fileupload, Img, TabItem, Tabs } from "flowbite-svelte";
 	import { saveData, saveDataJson } from "$store/save-data";
-	import SuspiciousFileName from "$components/alert/SuspiciousFileName.svelte";
-	import DownloadError from "$components/alert/DownloadError.svelte";
+	import AlertWrapper from "$components/alert/AlertWrapper.svelte";
 	import Basic from "$components/tabs/Basic.svelte";
 	import Items from "$components/tabs/Items.svelte";
 	import StatsAugments from "$components/tabs/StatsAugments.svelte";
@@ -21,35 +19,13 @@
 	let toShowBlocker = true;
 	$: toShowBlocker = !file;
 
-	interface AlertParameters {
-		toShow?: boolean;
-		alertType?: AlertType;
-		errorMessage?: string;
-	}
-
-	type AlertType = "suspiciousFileName" | "downloadError";
-
 	let toShowAlert = false;
-	let alertComponent: ComponentType | undefined;
-	let alertErrorMessage: string | undefined;
-	const showAlert = ({ toShow = true, alertType, errorMessage }: AlertParameters) => {
-		switch (alertType) {
-			case "suspiciousFileName":
-				alertComponent = SuspiciousFileName;
-				break;
-			case "downloadError":
-				alertComponent = DownloadError;
-				break;
-		}
-
-		alertErrorMessage = errorMessage;
-		toShowAlert = toShow;
+	let alertMessageLines: string[] = [];
+	const showAlert = (...messageLines: string[]) => {
+		toShowAlert = true;
+		alertMessageLines = messageLines;
 	};
-	const closeAlert = () => {
-		toShowAlert = false;
-		alertComponent = undefined;
-		alertErrorMessage = undefined;
-	};
+	const closeAlert = () => toShowAlert = false;
 
 	const validateFileName = (fileName: string) => /^playerStat_\d+$/.test(fileName);
 
@@ -60,9 +36,9 @@
 			const { name } = file;
 			const fileNameIsValid = validateFileName(name);
 			if (fileNameIsValid) {
-				showAlert({ toShow: false });
+				closeAlert();
 			} else {
-				showAlert({ alertType: "suspiciousFileName" });
+				showAlert("You might have loaded a wrong file.", "It's named 'playerStat_xxx' by default.");
 			}
 
 			file.stream()
@@ -73,8 +49,7 @@
 				.then(object => saveData.set(object))
 				.catch(error => {
 					console.error(error);
-					console.error(error.message);
-					showAlert({ errorMessage: error.message });
+					showAlert(error.message);
 				})
 				.finally(() => toShowSpinner = false);
 		} else {
@@ -102,7 +77,7 @@
 				output = `A non-Error "something" is thrown: ${error}`;
 			}
 
-			showAlert({ alertType: "downloadError", errorMessage: output });
+			showAlert(output);
 		} finally {
 			toShowSpinner = false;
 		}
@@ -139,12 +114,7 @@
 	{#if toShowAlert}
 		<div class="grid grid-cols-4">
 			<Alert class="mt-1 mb-3">
-				{#if alertComponent === undefined}
-					<p>{alertErrorMessage}</p>
-					<Button size="sm" class="mt-2" on:click={closeAlert}>Got it</Button>
-				{:else}
-					<svelte:component this={alertComponent} message={alertErrorMessage} on:close={closeAlert}/>
-				{/if}
+				<AlertWrapper messageLines={alertMessageLines} on:close={closeAlert}/>
 			</Alert>
 		</div>
 	{/if}
