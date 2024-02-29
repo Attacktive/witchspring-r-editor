@@ -17,7 +17,7 @@
 	<header class="w-full my-5">
 		<h1 class="text-center text-4xl">WitchSpring R Editor</h1>
 		{#if toShowTopButton}
-			<Button class="fixed right-10" on:click={scrollToTop}>
+			<Button class="fixed right-10 z-10" on:click={scrollToTop}>
 				<CaretUpSolid/>
 			</Button>
 		{/if}

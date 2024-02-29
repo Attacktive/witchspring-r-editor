@@ -61,7 +61,7 @@
 </Modal>
 
 {#if $saveData.myItemList.length > 0}
-	<SpeedDial placement="bottom" gradient defaultClass="absolute top-32 end-12">
+	<SpeedDial placement="bottom" gradient defaultClass="fixed top-32 end-12">
 		<SpeedDialButton on:click={showItemCreationModal}>
 			<CirclePlusSolid class="w-8 h-8"/>
 		</SpeedDialButton>
