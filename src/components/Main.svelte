@@ -94,7 +94,11 @@
 	};
 
 	const resetComponents = () => {
-		files = undefined;
+		/*
+		 * FIXME: It's clearly an invalid assignment.
+		 *  However, assigning `undefined` loses the reactivity for some reason. 🤷
+		 */
+		files = [];
 		saveData.reset();
 	};
 </script>
