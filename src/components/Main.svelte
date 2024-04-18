@@ -29,6 +29,13 @@
 
 	const validateFileName = (fileName: string) => /^playerStat_\d+$/.test(fileName);
 
+	const tryWithSample = () => {
+		fetch("sample/playerStat_49")
+			.then(response => response.blob())
+			.then(blob => new File([blob], "playerStat_49"))
+			.then(sampleFile => (file = sampleFile));
+	};
+
 	$: {
 		if (file) {
 			toShowSpinner = true;
@@ -113,6 +120,7 @@
 	<Fileupload bind:files={files} class="col-span-3"/>
 	<Button class="mx-8 col-span-2" disabled={!file} on:click={resetComponents}>Reset</Button>
 	<Button class="mx-1 col-span-2" disabled={!file} on:click={download}>Download</Button>
+	<Button class="mx-1 col-span-2" disabled={file} on:click={tryWithSample}>Try with Sample</Button>
 </div>
 <main class="relative">
 	{#if toShowAlert}
