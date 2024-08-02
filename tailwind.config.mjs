@@ -1,4 +1,6 @@
-const config = {
+import flowbitePlugin from "flowbite/plugin";
+
+export default {
 	content: [
 		"./src/**/*.{html,svelte,ts,js}",
 		"./node_modules/flowbite-svelte/**/*.{html,svelte,ts,js}"
@@ -23,7 +25,5 @@ const config = {
 			}
 		}
 	},
-	plugins: [require("flowbite/plugin")]
+	plugins: [flowbitePlugin]
 };
-
-module.exports = config;
