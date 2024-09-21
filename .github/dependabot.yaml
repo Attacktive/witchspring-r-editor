@@ -19,3 +19,8 @@ updates:
     schedule:
       interval: 'daily'
       time: '00:00'
+    groups:
+      ESLint:
+        patterns:
+          - 'typescript-eslint'
+          - '@typescript-eslint/*'
