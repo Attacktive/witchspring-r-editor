@@ -22,7 +22,7 @@
 		"@typescript-eslint/parser": "^8.7.0",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.11.1",
-		"eslint-plugin-svelte": "^2.44.0",
+		"eslint-plugin-svelte": "^2.44.1",
 		"flowbite": "^2.5.2",
 		"flowbite-svelte": "^0.46.20",
 		"flowbite-svelte-icons": "^1.6.1",
