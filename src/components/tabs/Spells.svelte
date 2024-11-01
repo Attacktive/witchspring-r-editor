@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Label, Select } from "flowbite-svelte";
-	import { saveData } from "$store/save-data";
-	import { primarySpells, subSpells } from "$types/spell";
+	import { saveData } from "$/store/save-data";
+	import { primarySpells, subSpells } from "$/types/spell";
 
 	const primarySpellOptions = primarySpells.map(primarySpell => {
 		let replaced;

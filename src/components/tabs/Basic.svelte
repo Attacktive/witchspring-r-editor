@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { SelectOptionType } from "flowbite-svelte";
-	import type { PetId } from "$types/pet";
-	import { saveData } from "$store/save-data";
+	import type { PetId } from "$/types/pet";
+	import { saveData } from "$/store/save-data";
 	import { Checkbox, Input, Label, NumberInput, Select } from "flowbite-svelte";
-	import { petIds } from "$types/pet";
+	import { petIds } from "$/types/pet";
 
 	const petOptions: SelectOptionType<PetId>[] = petIds.map(petId => {
 		if (petId) {

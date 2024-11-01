@@ -1,4 +1,4 @@
-import type { PetId } from "$types/pet";
+import type { PetId } from "$/types/pet";
 
 // TODO: fill in missing values
 type PlayerObjectId = "" | "BlackberryPink" | "SeraDressLakeSky" | "BlackberryBloom" | string;

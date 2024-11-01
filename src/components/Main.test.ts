@@ -1,5 +1,6 @@
-import Main from "./Main.svelte";
+import { mount } from "svelte";
 import { describe, expect, test } from "vitest";
+import Main from "./Main.svelte";
 
 function getAncestors(element: Element) {
 	const ancestors: Element[] = [];
@@ -23,7 +24,7 @@ describe(
 				const container = document.createElement("div");
 				document.body.appendChild(container);
 
-				const instance = new Main({ target: container });
+				const instance = mount(Main, { target: container });
 
 				expect(instance).toBeTruthy();
 

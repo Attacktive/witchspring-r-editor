@@ -1,15 +1,15 @@
 import type { BasicData } from "$/types/basic-data";
-import type { PrimarySpell, SubSpell } from "$types/spell";
-import type { EquippedItem } from "$types/equipped-item";
-import type { StatsAugment } from "$types/stats-augment";
-import type { Item } from "$types/item";
-import type { SpellBook } from "$types/spell-book";
-import type { BattleAction } from "$types/battle-action";
-import type { StickAction } from "$types/stick-action";
-import type { SpecialSkill } from "$types/special-skill";
-import type { Blessing } from "$types/blessing";
-import type { Pet } from "$types/pet";
-import type { TrainingLevel } from "$types/training";
+import type { PrimarySpell, SubSpell } from "$/types/spell";
+import type { EquippedItem } from "$/types/equipped-item";
+import type { StatsAugment } from "$/types/stats-augment";
+import type { Item } from "$/types/item";
+import type { SpellBook } from "$/types/spell-book";
+import type { BattleAction } from "$/types/battle-action";
+import type { StickAction } from "$/types/stick-action";
+import type { SpecialSkill } from "$/types/special-skill";
+import type { Blessing } from "$/types/blessing";
+import type { Pet } from "$/types/pet";
+import type { TrainingLevel } from "$/types/training";
 
 export type SaveData = BasicData & {
 	equipList: EquippedItem[];
