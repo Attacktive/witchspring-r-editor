@@ -1,68 +1,37 @@
 <script lang="ts">
 	import { Alert, Button, Fileupload, Img, TabItem, Tabs } from "flowbite-svelte";
-	import { saveData, saveDataJson } from "$store/save-data";
-	import AlertWrapper from "$components/alert/AlertWrapper.svelte";
-	import Basic from "$components/tabs/Basic.svelte";
-	import Items from "$components/tabs/Items.svelte";
-	import StatsAugments from "$components/tabs/StatsAugments.svelte";
-	import Spells from "$components/tabs/Spells.svelte";
+	import { saveData, saveDataJson } from "$/store/save-data";
+	import { emptyFileList, fileToFileList } from "$/utils/file";
+	import AlertWrapper from "$/components/alert/AlertWrapper.svelte";
+	import Basic from "$/components/tabs/Basic.svelte";
+	import Items from "$/components/tabs/Items.svelte";
+	import StatsAugments from "$/components/tabs/StatsAugments.svelte";
+	import Spells from "$/components/tabs/Spells.svelte";
 	import nyancat from "$lib/assets/nyancat.gif";
 
 	const textDecoder = new TextDecoder();
 
-	let toShowSpinner = false;
+	let toShowSpinner = $state(false);
 
-	let files: FileList | undefined;
-	let file: File | undefined;
-	$: file = files?.[0];
+	let files: FileList | undefined = $state();
+	const file = $derived(files?.[0]);
 
-	let toShowBlocker = true;
-	$: toShowBlocker = !file;
-
-	let toShowAlert = false;
-	let alertMessageLines: string[] = [];
+	let toShowAlert = $state(false);
+	let alertMessageLines: string[] = $state([]);
 	const showAlert = (...messageLines: string[]) => {
 		toShowAlert = true;
 		alertMessageLines = messageLines;
 	};
 	const closeAlert = () => toShowAlert = false;
 
-	const validateFileName = (fileName: string) => /^playerStat_\d+$/.test(fileName);
+	const validateFileName = (fileName: string) => /^playerStat_\d+(?:\.json)?$/.test(fileName);
 
 	const tryWithSample = () => {
 		fetch("sample/playerStat_49")
 			.then(response => response.blob())
 			.then(blob => new File([blob], "playerStat_49"))
-			.then(sampleFile => (file = sampleFile));
+			.then(sampleFile => (files = fileToFileList(sampleFile)));
 	};
-
-	$: {
-		if (file) {
-			toShowSpinner = true;
-
-			const { name } = file;
-			const fileNameIsValid = validateFileName(name);
-			if (fileNameIsValid) {
-				closeAlert();
-			} else {
-				showAlert("You might have loaded a wrong file.", "It's named 'playerStat_xxx' by default.");
-			}
-
-			file.stream()
-				.getReader()
-				.read()
-				.then(fileStreamResult => textDecoder.decode(fileStreamResult.value))
-				.then(content => JSON.parse(content))
-				.then(object => saveData.set(object))
-				.catch(error => {
-					console.error(error);
-					showAlert(error.message);
-				})
-				.finally(() => toShowSpinner = false);
-		} else {
-			resetComponents();
-		}
-	}
 
 	const download = async () => {
 		toShowSpinner = true;
@@ -101,13 +70,39 @@
 	};
 
 	const resetComponents = () => {
-		/*
-		 * FIXME: It's clearly an invalid assignment.
-		 *  However, assigning `undefined` loses the reactivity for some reason. 🤷
-		 */
-		files = [];
+		files = emptyFileList();
 		saveData.reset();
 	};
+
+	const toShowBlocker = $derived(!file);
+
+	$effect(() => {
+		if (file) {
+			toShowSpinner = true;
+
+			const { name } = file;
+			const fileNameIsValid = validateFileName(name);
+			if (fileNameIsValid) {
+				closeAlert();
+			} else {
+				showAlert("You might have loaded a wrong file.", "It's named 'playerStat_xxx' by default.");
+			}
+
+			file.stream()
+				.getReader()
+				.read()
+				.then(fileStreamResult => textDecoder.decode(fileStreamResult.value))
+				.then(content => JSON.parse(content))
+				.then(object => saveData.set(object))
+				.catch(error => {
+					console.error(error);
+					showAlert(error.message);
+				})
+				.finally(() => toShowSpinner = false);
+		} else {
+			resetComponents();
+		}
+	});
 </script>
 
 {#if toShowSpinner}
@@ -120,13 +115,13 @@
 	<Fileupload bind:files={files} class="col-span-3"/>
 	<Button class="mx-8 col-span-2" disabled={!file} on:click={resetComponents}>Reset</Button>
 	<Button class="mx-1 col-span-2" disabled={!file} on:click={download}>Download</Button>
-	<Button class="mx-1 col-span-2" disabled={file} on:click={tryWithSample}>Try with Sample</Button>
+	<Button class="mx-1 col-span-2" disabled={Boolean(file)} on:click={tryWithSample}>Try with Sample</Button>
 </div>
 <main class="relative">
 	{#if toShowAlert}
 		<div class="grid grid-cols-4">
 			<Alert class="mt-1 mb-3">
-				<AlertWrapper messageLines={alertMessageLines} on:close={closeAlert}/>
+				<AlertWrapper messageLines={alertMessageLines} close={closeAlert}/>
 			</Alert>
 		</div>
 	{/if}
