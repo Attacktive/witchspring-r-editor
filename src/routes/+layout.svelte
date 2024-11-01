@@ -2,11 +2,16 @@
 	import "$/app.css";
 	import { Button, Footer, FooterLink, FooterLinkGroup, Textarea } from "flowbite-svelte";
 	import { CaretUpSolid } from "flowbite-svelte-icons";
-	import { saveDataJson } from "$store/save-data";
+	import { saveDataJson } from "$/store/save-data";
 	import github from "$lib/assets/github.svg";
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
 
-	let mainElement: HTMLElement;
-	let toShowTopButton: boolean;
+	let { children }: Props = $props();
+
+	let mainElement: HTMLElement = $state();
+	let toShowTopButton: boolean = $state();
 	const onScroll = () => {
 		toShowTopButton = mainElement.scrollTop > 50;
 	};
@@ -22,8 +27,8 @@
 			</Button>
 		{/if}
 	</header>
-	<main bind:this={mainElement} class="flex-1 overflow-y-scroll my-2" on:scroll={onScroll}>
-		<slot/>
+	<main bind:this={mainElement} class="flex-1 overflow-y-scroll my-2" onscroll={onScroll}>
+		{@render children?.()}
 	</main>
 	<Footer class="w-full mt-2">
 		<Textarea class="v-full font-mono" value={$saveDataJson} rows="8" readonly/>

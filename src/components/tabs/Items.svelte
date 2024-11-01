@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { Item } from "$types/item";
+	import type { Item } from "$/types/item";
 	import { Accordion, AccordionItem, Button, Input, Label, Modal, NumberInput, Select, SpeedDial, SpeedDialButton } from "flowbite-svelte";
 	import { CirclePlusSolid, TrashBinOutline } from "flowbite-svelte-icons";
-	import { saveData } from "$store/save-data";
-	import { getItemCategory, itemCategories, nonExhaustiveItemIdList } from "$types/item";
+	import { saveData } from "/$store/save-data";
+	import { getItemCategory, itemCategories, nonExhaustiveItemIdList } from "$/types/item";
 
 	const categoryOptions = itemCategories.map(itemCategory => ({
 		name: itemCategory.text,
@@ -12,7 +12,7 @@
 
 	console.debug(JSON.stringify($saveData.myItemList.map(x => x.id).sort()));
 
-	let toShowModal = false;
+	let toShowModal = $state(false);
 	const showItemCreationModal = () => toShowModal = true;
 
 	const generateNewItem = (): Item => ({
@@ -21,7 +21,7 @@
 		count: 1
 	});
 
-	let newItem = generateNewItem();
+	let newItem = $state(generateNewItem());
 
 	const createItem = () => {
 		$saveData.myItemList = [...$saveData.myItemList, newItem]
@@ -71,7 +71,9 @@
 		{#each $saveData.myItemList as item, index (`item-${index}`)}
 			{@const ordinal = index + 1}
 			<AccordionItem>
-				<span slot="header">#{ordinal} {item.id} ({getItemCategory(item.category)})</span>
+				{#snippet header()}
+					<span >#{ordinal} {item.id} ({getItemCategory(item.category)})</span>
+				{/snippet}
 				<div class="my-1">
 					<Label>Item ID</Label>
 					<Input bind:value={item.id} list="item-id-list"/>

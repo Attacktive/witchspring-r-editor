@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Accordion, AccordionItem, Label, NumberInput, Select } from "flowbite-svelte";
-	import { saveData } from "$store/save-data";
-	import { statsAugmentTags } from "$types/stats-augment";
+	import { saveData } from "$/store/save-data";
+	import { statsAugmentTags } from "$/types/stats-augment";
 
 	const statsAugmentTagOptions = statsAugmentTags.map(statsAugmentTag => {
 		const respelled = statsAugmentTag.replace(/ACCESSARY/, "ACCESSORY");
@@ -18,7 +18,9 @@
 		{#each $saveData.plusStatList as statsAugment, index (`statsAugment-${index}`)}
 			{@const ordinal = index + 1}
 			<AccordionItem>
-				<span slot="header">#{ordinal} {statsAugment.id}</span>
+				{#snippet header()}
+					<span >#{ordinal} {statsAugment.id}</span>
+				{/snippet}
 				<div class="my-1">
 					<Label>Tag</Label>
 					<Select bind:value={statsAugment.tag} items={statsAugmentTagOptions}/>
