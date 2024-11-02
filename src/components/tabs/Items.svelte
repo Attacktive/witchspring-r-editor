@@ -2,7 +2,7 @@
 	import type { Item } from "$/types/item";
 	import { Accordion, AccordionItem, Button, Input, Label, Modal, NumberInput, Select, SpeedDial, SpeedDialButton } from "flowbite-svelte";
 	import { CirclePlusSolid, TrashBinOutline } from "flowbite-svelte-icons";
-	import { saveData } from "/$store/save-data";
+	import { saveData } from "$/store/save-data";
 	import { getItemCategory, itemCategories, nonExhaustiveItemIdList } from "$/types/item";
 
 	const categoryOptions = itemCategories.map(itemCategory => ({
