@@ -1,5 +1,6 @@
 import type { CompileOptions } from "svelte/compiler";
 import type { PluginOption } from "vite";
+import { resolve } from "path";
 import { defineConfig } from "vitest/config";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 
@@ -16,6 +17,10 @@ export default defineConfig({
 	},
 	plugins,
 	resolve: {
-		conditions: ["browser"]
+		conditions: ["browser"],
+		alias: {
+			"$": resolve(__dirname, "./src"),
+			"$lib": resolve(__dirname, "./src/lib")
+		}
 	}
 });
