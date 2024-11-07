@@ -15,6 +15,20 @@ function getAncestors(element: Element) {
 	return ancestors;
 }
 
+(function mockDataTransfer() {
+	class DataTransferStub {
+		constructor() {}
+	}
+
+	interface WindowStub extends Window {
+		DataTransfer: DataTransferStub
+	}
+
+	if (typeof window.DataTransfer === "undefined") {
+		(window as WindowStub).DataTransfer = DataTransferStub;
+	}
+})();
+
 describe(
 	"Main component",
 	() => {
