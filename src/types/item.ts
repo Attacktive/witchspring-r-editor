@@ -1,6 +1,10 @@
+export type ItemCategoryIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 13 | 16;
+export type NullableItemCategoryIndex = ItemCategoryIndex | -1;
+export type ItemCategoryText = "Consumable" | "Booster" | "Spell" | "Tome" | "Equipment" | "Key" | "In-battle Consumable" | "Ingredient" | "⁉ IncreasingStoneRed" | "Stimulus";
+
 interface ItemCategoryMapping {
-	index: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 13 | 16;
-	text: "Consumable" | "Booster" | "Spell" | "Tome" | "Equipment" | "Key" | "In-battle Consumable" | "Ingredient" | "⁉ IncreasingStoneRed" | "Stimulus";
+	index: ItemCategoryIndex;
+	text: ItemCategoryText;
 }
 
 export const nonExhaustiveItemIdList: readonly string[] = Object.freeze([
@@ -293,6 +297,11 @@ export interface Item {
 	id: string;
 	count: number;
 	category: number;
+}
+
+export interface Filter {
+	id: string;
+	category: NullableItemCategoryIndex;
 }
 
 export function getItemCategory(itemCategoryNumber: number): ItemCategoryMapping["text"] {
