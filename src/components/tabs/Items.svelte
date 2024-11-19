@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Filter, Item, ItemCategoryIndex, NullableItemCategoryIndex } from "$/types/item";
-	import { Accordion, AccordionItem, Button, Input, Label, Modal, NumberInput, Select, type SelectOptionType, SpeedDial, SpeedDialButton } from "flowbite-svelte";
+	import { Accordion, AccordionItem, Button, Input, Label, Modal, NumberInput, Select, type SelectOptionType } from "flowbite-svelte";
 	import { CirclePlusSolid, SearchOutline, TrashBinOutline } from "flowbite-svelte-icons";
 	import { saveData } from "$/store/save-data";
 	import { getItemCategory, itemCategories, nonExhaustiveItemIdList } from "$/types/item";
@@ -83,11 +83,9 @@
 </Modal>
 
 {#if $saveData.myItemList.length > 0}
-	<SpeedDial placement="bottom" gradient defaultClass="fixed top-32 end-12">
-		<SpeedDialButton on:click={showItemCreationModal}>
-			<CirclePlusSolid class="w-8 h-8"/>
-		</SpeedDialButton>
-	</SpeedDial>
+	<Button pill size="xs" class="fixed top-32 end-12" on:click={showItemCreationModal}>
+		<CirclePlusSolid class="w-8 h-8"/>
+	</Button>
 
 	<div class="flex justify-between space-x-20 mb-3">
 		<Input placeholder="ID" bind:value={filter.id} class="">
