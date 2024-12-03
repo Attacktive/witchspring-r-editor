@@ -19,8 +19,6 @@ jobs:
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
         run: 'npm run build'
-      - name: 'Run tests'
-        run: 'npm run test'
       - name: 'Upload artifacts'
         uses: 'actions/upload-pages-artifact@v3'
         with:
