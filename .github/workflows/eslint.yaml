@@ -17,6 +17,8 @@ jobs:
           node-version: '22.x'
       - name: 'Install NPM packages'
         run: 'npm ci'
+      - name: 'Run tests'
+        run: 'npm run test'
       - name: 'Run ESLint'
         run: 'npm run lint'
       - name: 'Run svelte-check'
