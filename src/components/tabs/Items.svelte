@@ -99,9 +99,9 @@
 			{@const ordinal = index + 1}
 			{#if passesFiltration(item)}
 				<AccordionItem>
-					{#snippet header()}
+					<svelte:fragment slot="header">
 						<span >#{ordinal} {item.id} ({getItemCategory(item.category)})</span>
-					{/snippet}
+					</svelte:fragment>
 					<div class="my-1">
 						<Label>Item ID</Label>
 						<Input bind:value={item.id} list="item-id-list"/>

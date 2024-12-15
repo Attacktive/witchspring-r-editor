@@ -10,12 +10,14 @@
 
 	let { children }: Props = $props();
 
-	let mainElement: HTMLElement = $state();
-	let toShowTopButton: boolean = $state();
+	let mainElement: HTMLElement | undefined = $state();
+	let toShowTopButton: boolean = $state(false);
 	const onScroll = () => {
-		toShowTopButton = mainElement.scrollTop > 50;
+		if (mainElement) {
+			toShowTopButton = mainElement.scrollTop > 50;
+		}
 	};
-	const scrollToTop = () => mainElement.scrollTo(0, 0);
+	const scrollToTop = () => mainElement?.scrollTo(0, 0);
 </script>
 
 <div class="px-3 flex flex-col h-screen overflow-hidden">
@@ -31,7 +33,7 @@
 		{@render children?.()}
 	</main>
 	<Footer class="w-full mt-2">
-		<Textarea class="v-full font-mono" value={$saveDataJson} rows="8" readonly/>
+		<Textarea class="v-full font-mono" value={$saveDataJson} rows={8} readonly/>
 		<FooterLinkGroup ulClass="flex flex-row-reverse">
 			<FooterLink href="https://github.com/Attacktive/witchspring-r-editor">
 				<img src={github} alt="to the GitHub repository" width={48} height={48}/>

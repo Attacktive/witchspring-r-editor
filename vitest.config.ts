@@ -1,5 +1,5 @@
 import type { CompileOptions } from "svelte/compiler";
-import type { PluginOption } from "vite";
+import type { Plugin } from "rollup";
 import { resolve } from "path";
 import { defineConfig } from "vitest/config";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
@@ -8,7 +8,7 @@ const compilerOptions: CompileOptions = {
 	hmr: !process.env.VITEST
 };
 
-const plugins: PluginOption[] = [svelte({ compilerOptions })];
+const plugins = [svelte({ compilerOptions }) as Plugin[]];
 
 export default defineConfig({
 	test: {
