@@ -18,9 +18,9 @@
 		{#each $saveData.plusStatList as statsAugment, index (`statsAugment-${index}`)}
 			{@const ordinal = index + 1}
 			<AccordionItem>
-				{#snippet header()}
+				<svelte:fragment slot="header">
 					<span >#{ordinal} {statsAugment.id}</span>
-				{/snippet}
+				</svelte:fragment>
 				<div class="my-1">
 					<Label>Tag</Label>
 					<Select bind:value={statsAugment.tag} items={statsAugmentTagOptions}/>
@@ -67,7 +67,7 @@
 				</div>
 				<div class="my-1">
 					<Label>Agility Addition</Label>
-					<NumberInput bind:value={statsAugment.prate_agt}/>
+					<NumberInput bind:value={statsAugment.point_agt}/>
 				</div>
 				<div class="my-1">
 					<Label>Agility Addition Rate (fraction)</Label>
