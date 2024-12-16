@@ -18,7 +18,8 @@ jobs:
       - name: 'Install NPM packages'
         run: 'npm ci'
       - name: 'Run tests'
-        run: 'echo "npm run test will fail for now; deal with it later."'
+        run: 'npm run test'
+        continue-on-error: true
       - name: 'Run ESLint'
         run: 'npm run lint'
       - name: 'Run svelte-check'
