@@ -19,6 +19,7 @@ jobs:
         run: 'npm ci'
       - name: 'Run tests'
         run: 'npm run test'
+        # TODO: remove it when the test code actually works.
         continue-on-error: true
       - name: 'Run ESLint'
         run: 'npm run lint'
