@@ -27,7 +27,7 @@
 		"flowbite": "^2.5.2",
 		"flowbite-svelte": "^0.47.4",
 		"flowbite-svelte-icons": "^2.0.2",
-		"globals": "^15.13.0",
+		"globals": "^15.14.0",
 		"jsdom": "^25.0.1",
 		"svelte": "^5.14.4",
 		"svelte-check": "^4.1.1",
