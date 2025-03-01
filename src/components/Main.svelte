@@ -74,7 +74,7 @@
 		saveData.reset();
 	};
 
-	const toShowBlocker = $derived(!file);
+	const fileIsLoaded = $derived(Boolean(file));
 
 	$effect(() => {
 		if (file) {
@@ -125,23 +125,22 @@
 			</Alert>
 		</div>
 	{/if}
-	{#if toShowBlocker}
-		<div class="fixed w-full h-full bg-gray-200 bg-opacity-50"></div>
+	{#if fileIsLoaded}
+		<div class="mt-4">
+			<Tabs>
+				<TabItem title="Basic" open>
+					<Basic/>
+				</TabItem>
+				<TabItem title="Items">
+					<Items/>
+				</TabItem>
+				<TabItem title="Stats Augments">
+					<StatsAugments/>
+				</TabItem>
+				<TabItem title="Spells">
+					<Spells/>
+				</TabItem>
+			</Tabs>
+		</div>
 	{/if}
-	<div class="mt-4">
-		<Tabs>
-			<TabItem title="Basic" open>
-				<Basic/>
-			</TabItem>
-			<TabItem title="Items">
-				<Items/>
-			</TabItem>
-			<TabItem title="Stats Augments">
-				<StatsAugments/>
-			</TabItem>
-			<TabItem title="Spells">
-				<Spells/>
-			</TabItem>
-		</Tabs>
-	</div>
 </main>
