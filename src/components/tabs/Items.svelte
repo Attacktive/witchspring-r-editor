@@ -56,7 +56,7 @@
 </script>
 
 <datalist id="item-id-list">
-	{#each nonExhaustiveItemIdList as itemId}
+	{#each nonExhaustiveItemIdList as itemId (`item-${itemId}`)}
 		<option>{itemId}</option>
 	{/each}
 </datalist>

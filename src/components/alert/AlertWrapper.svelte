@@ -12,7 +12,7 @@
 	const closeAlert = () => close();
 </script>
 
-{#each messageLines as messageLine}
+{#each messageLines as messageLine, index (`message-${index}`)}
 	<p>{messageLine}</p>
 {/each}
 <Button size="sm" class="mt-2" onclick={closeAlert}>
