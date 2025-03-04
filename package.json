@@ -19,7 +19,7 @@
 		"@tailwindcss/vite": "^4.0.9",
 		"@testing-library/svelte": "^5.2.7",
 		"@types/eslint": "^9.6.1",
-		"@types/node": "^22.13.8",
+		"@types/node": "^22.13.9",
 		"@typescript-eslint/eslint-plugin": "^8.25.0",
 		"@typescript-eslint/parser": "^8.25.0",
 		"eslint": "^9.21.0",
