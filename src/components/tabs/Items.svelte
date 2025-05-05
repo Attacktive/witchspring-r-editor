@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Filter, Item, ItemCategoryIndex, NullableItemCategoryIndex } from "$/types/item";
-	import { Accordion, AccordionItem, Button, Input, Label, Modal, NumberInput, Select, type SelectOptionType } from "flowbite-svelte";
-	import { CirclePlusSolid, SearchOutline, TrashBinOutline } from "flowbite-svelte-icons";
+	import { Accordion, AccordionItem, Button, Input, Label, Modal, Select, type SelectOptionType } from "flowbite-svelte";
+	import { CirclePlusSolid, TrashBinOutline } from "flowbite-svelte-icons";
 	import { saveData } from "$/store/save-data";
 	import { getItemCategory, itemCategories, nonExhaustiveItemIdList } from "$/types/item";
 
@@ -76,20 +76,20 @@
 			<Label>Count</Label>
 			<Input bind:value={newItem.count}/>
 		</div>
-		<Button class="my-2" on:click={createItem}>
+		<Button class="my-2" onclick={createItem}>
 			<CirclePlusSolid/>
 		</Button>
 	</form>
 </Modal>
 
 {#if $saveData.myItemList.length > 0}
-	<Button pill size="xs" class="fixed top-32 end-12" on:click={showItemCreationModal}>
+	<Button pill size="xs" class="fixed top-32 end-12" onclick={showItemCreationModal}>
 		<CirclePlusSolid class="w-8 h-8"/>
 	</Button>
 
 	<div class="flex justify-between space-x-20 mb-3">
 		<Input placeholder="ID" bind:value={filter.id} class="">
-			<SearchOutline slot="left"/>
+			{#snippet left()}{/snippet}
 		</Input>
 		<Select placeholder="Category" bind:value={filter.category} items={categoryOptionsWithNone} class=""/>
 	</div>
@@ -99,19 +99,19 @@
 			{@const ordinal = index + 1}
 			{#if passesFiltration(item)}
 				<AccordionItem>
-					<svelte:fragment slot="header">
+					{#snippet header()}
 						<span >#{ordinal} {item.id} ({getItemCategory(item.category)})</span>
-					</svelte:fragment>
+					{/snippet}
 					<div class="my-1">
 						<Label>Item ID</Label>
 						<Input bind:value={item.id} list="item-id-list"/>
 					</div>
 					<div class="mt-1 mb-3">
 						<Label>Item Count</Label>
-						<NumberInput bind:value={item.count} step="1"/>
+						<Input type="number" bind:value={item.count} step="1"/>
 					</div>
 					<div class="flex flex-row-reverse">
-						<Button on:click={() => throwAway(index)}>
+						<Button onclick={() => throwAway(index)}>
 							<TrashBinOutline/>
 						</Button>
 					</div>
