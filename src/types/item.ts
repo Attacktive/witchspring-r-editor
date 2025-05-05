@@ -7,7 +7,7 @@ interface ItemCategoryMapping {
 	text: ItemCategoryText;
 }
 
-export const nonExhaustiveItemIdList: readonly string[] = Object.freeze([
+const nonExhaustiveItemIdSet = new Set([
 	"AcientLightningDragonHorn",
 	"AgilityRing",
 	"AgtStimulus",
@@ -208,7 +208,6 @@ export const nonExhaustiveItemIdList: readonly string[] = Object.freeze([
 	"Sword_Dark_Low",
 	"Sword_Esteran",
 	"Sword_Fire2",
-	"Sword_Fire2",
 	"Sword_High",
 	"Sword_Ice3",
 	"Sword_IronGlory",
@@ -234,7 +233,6 @@ export const nonExhaustiveItemIdList: readonly string[] = Object.freeze([
 	"WarriorRing",
 	"WeaponCooler",
 	"Weapon_Stick_Fire3",
-	"Weapon_Stick_Fire3",
 	"Weapon_Stick_SP_4",
 	"Weapon_Stick_Thunder",
 	"Weapon_Stick_ThunderNiddle2",
@@ -249,6 +247,8 @@ export const nonExhaustiveItemIdList: readonly string[] = Object.freeze([
 	"Zircon",
 	"Zirconina"
 ]);
+
+export const nonExhaustiveItemIdList = Object.freeze([...nonExhaustiveItemIdSet]);
 
 export const itemCategories: readonly ItemCategoryMapping[] = Object.freeze([
 	{
