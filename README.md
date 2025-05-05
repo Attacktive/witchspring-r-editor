@@ -11,8 +11,10 @@ It's a save file editor of the game [*WitchSpring R*](https://store.steampowered
 ## How to Use
 
 1. Hit the button 'Choose File'
-2. Navigate to the path to the save files
+2. Choose the save file:
    - *Windows*: `%programfiles(x86)%\Steam\userdata\{your-friend-code}\1958220\remote\playerStat_{number}`
    - *Flatpak* on *Linux*: `$HOME/.var/app/com.valvesoftware.Steam/data/Steam/userdata/{your-friend-code}/1958220/remote/playerStat_{number}`
-3. Edit data all you like 😏
-4. Hit the button 'Download'
+4. Edit data all you like 😏
+5. Hit the button 'Download'
+6. Rename the original save file as a backup *(optional)*
+7. Overwrite the save file with the downloaded one
