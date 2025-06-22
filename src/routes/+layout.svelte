@@ -1,11 +1,12 @@
 <script lang="ts">
 	import "$/app.css";
-	import { Button, Footer, FooterLink, FooterLinkGroup, Textarea } from "flowbite-svelte";
+	import { Button, Footer, FooterLink, FooterLinkGroup } from "flowbite-svelte";
 	import { CaretUpSolid } from "flowbite-svelte-icons";
 	import { saveDataJson } from "$/store/save-data";
 	import github from "$lib/assets/github.svg";
+
 	interface Props {
-		children?: import('svelte').Snippet;
+		children?: import("svelte").Snippet;
 	}
 
 	let { children }: Props = $props();
@@ -32,8 +33,10 @@
 	<main bind:this={mainElement} class="flex-1 overflow-y-scroll my-2" onscroll={onScroll}>
 		{@render children?.()}
 	</main>
-	<Footer class="w-full mt-2 flex-col">
-		<Textarea class="v-full font-mono" value={$saveDataJson} rows={8} readonly/>
+	<Footer id="footer" class="w-full mt-2 flex-col">
+		<p class="max-h-28 bg-gray-200 font-mono overflow-y-auto break-all">
+			{$saveDataJson}
+		</p>
 
 		<div class="w-full flex flex-row-reverse">
 			<FooterLinkGroup>

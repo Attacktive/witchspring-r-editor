@@ -111,11 +111,11 @@
 	</div>
 {/if}
 
-<div class="grid grid-cols-12 mt-2">
-	<Fileupload bind:files={files} class="col-span-3"/>
-	<Button class="mx-8 col-span-2" disabled={!file} onclick={resetComponents}>Reset</Button>
-	<Button class="mx-1 col-span-2" disabled={!file} onclick={download}>Download</Button>
-	<Button class="mx-1 col-span-2" disabled={Boolean(file)} onclick={tryWithSample}>Try with Sample</Button>
+<div class="flex mt-2">
+	<Fileupload bind:files={files}/>
+	<Button class="mx-1 mr-6 w-80" disabled={!file} onclick={resetComponents}>Reset</Button>
+	<Button class="mx-1 w-80" disabled={!file} onclick={download}>Download</Button>
+	<Button class="mx-1 w-80" disabled={Boolean(file)} onclick={tryWithSample}>Try with Sample</Button>
 </div>
 <main class="relative">
 	{#if toShowAlert}
