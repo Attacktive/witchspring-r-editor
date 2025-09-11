@@ -23,7 +23,7 @@
 		"@typescript-eslint/eslint-plugin": "^8.43.0",
 		"@typescript-eslint/parser": "^8.43.0",
 		"eslint": "^9.35.0",
-		"eslint-plugin-svelte": "^3.12.2",
+		"eslint-plugin-svelte": "^3.12.3",
 		"flowbite": "^3.1.2",
 		"flowbite-svelte": "^1.13.8",
 		"flowbite-svelte-icons": "^3.0.0",
