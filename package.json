@@ -22,7 +22,7 @@
 		"@types/node": "^24.6.2",
 		"@typescript-eslint/eslint-plugin": "^8.45.0",
 		"@typescript-eslint/parser": "^8.45.0",
-		"eslint": "^9.36.0",
+		"eslint": "^9.37.0",
 		"eslint-plugin-svelte": "^3.12.4",
 		"flowbite": "^3.1.2",
 		"flowbite-svelte": "^1.17.3",
