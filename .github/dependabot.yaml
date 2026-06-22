@@ -23,6 +23,11 @@ updates:
       - 'CI/CD'
     commit-message:
       prefix: 'ci'
+    versioning-strategy: 'increase'
+    ignore:
+      - dependency-name: '@types/node'
+        update-types:
+          - 'version-update:semver-major'
     groups:
       eslint:
         patterns:
