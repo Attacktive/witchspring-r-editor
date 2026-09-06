@@ -13,11 +13,11 @@ describe(
 				saveData.reset();
 				saveData.set({
 					...createInitialSaveData(),
-					nowPetID: 'Ruka'
+					nowPetID: 'Aslan'
 				});
 
 				expect(get(saveData).nowPetID)
-					.toBe('Ruka');
+					.toBe('Aslan');
 			}
 		);
 
@@ -27,14 +27,14 @@ describe(
 				saveData.reset();
 				const legacyData = {
 					...createInitialSaveData(),
-					nowPet: 'Ruka'
+					nowPet: 'Aslan'
 				};
 
 				delete (legacyData as Record<string, unknown>).nowPetID;
 				saveData.set(legacyData as unknown as SaveData);
 
 				expect(get(saveData).nowPetID)
-					.toBe('Ruka');
+					.toBe('Aslan');
 			}
 		);
 	}
