@@ -13,11 +13,11 @@ describe(
 				saveData.reset();
 				saveData.set({
 					...createInitialSaveData(),
-					nowPetID: 'Ruke'
+					nowPetID: 'Ruka'
 				});
 
 				expect(get(saveData).nowPetID)
-					.toBe('Ruke');
+					.toBe('Ruka');
 			}
 		);
 
@@ -27,28 +27,14 @@ describe(
 				saveData.reset();
 				const legacyData = {
 					...createInitialSaveData(),
-					nowPet: 'Ruke'
+					nowPet: 'Ruka'
 				};
 
 				delete (legacyData as Record<string, unknown>).nowPetID;
 				saveData.set(legacyData as unknown as SaveData);
 
 				expect(get(saveData).nowPetID)
-					.toBe('Ruke');
-			}
-		);
-
-		test(
-			'should migrate legacy "Ruka" to "Ruke"',
-			() => {
-				saveData.reset();
-				saveData.set({
-					...createInitialSaveData(),
-					nowPetID: 'Ruka' as unknown as 'Ruke'
-				});
-
-				expect(get(saveData).nowPetID)
-					.toBe('Ruke');
+					.toBe('Ruka');
 			}
 		);
 	}

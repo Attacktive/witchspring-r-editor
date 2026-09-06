@@ -5,13 +5,10 @@ describe(
 	'petIds',
 	() => {
 		test(
-			'should contain "Ruke" and not contain "Ruka"',
+			'should contain "Ruka"',
 			() => {
 				expect(petIds)
-					.toContain('Ruke');
-
-				expect(petIds)
-					.not.toContain('Ruka');
+					.toContain('Ruka');
 			}
 		);
 	}

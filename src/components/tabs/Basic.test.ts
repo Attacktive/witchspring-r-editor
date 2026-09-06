@@ -8,12 +8,12 @@ describe(
 	'Basic tab',
 	() => {
 		test(
-			'should select "Ruke" as Current Pet when nowPetID is "Ruke"',
+			'should select "Ruka" as Current Pet when nowPetID is "Ruka"',
 			async () => {
 				saveData.reset();
 				saveData.set({
 					...get(saveData),
-					nowPetID: 'Ruke'
+					nowPetID: 'Ruka'
 				});
 
 				const container = document.createElement('div');
@@ -26,7 +26,7 @@ describe(
 					.not.toBeNull();
 
 				expect(select?.value)
-					.toBe('Ruke');
+					.toBe('Ruka');
 			}
 		);
 	}

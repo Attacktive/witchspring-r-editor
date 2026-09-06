@@ -16,10 +16,6 @@ const createStore = () => {
 			delete raw.nowPet;
 		}
 
-		if (raw.nowPetID === "Ruka") {
-			raw.nowPetID = "Ruke";
-		}
-
 		set(value);
 	};
 
