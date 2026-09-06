@@ -53,7 +53,7 @@ export function createInitialSaveData(): SaveData {
 		walkSpeed: 0,
 		gold: 0,
 		blackJoe: false,
-		nowPet: "",
+		nowPetID: "",
 		lockPetID: "",
 		homePet: "",
 		ridingMode: false,

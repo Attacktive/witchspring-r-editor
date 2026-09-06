@@ -27,7 +27,7 @@ export interface BasicData {
 	walkSpeed: number;
 	gold: number;
 	blackJoe: boolean;
-	nowPet: PetId;
+	nowPetID: PetId;
 	lockPetID: PetId;
 	homePet: PetId;
 	ridingMode: boolean;

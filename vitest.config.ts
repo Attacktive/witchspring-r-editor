@@ -13,6 +13,7 @@ const plugins = [svelte({ compilerOptions }) as Plugin[]];
 export default defineConfig({
 	test: {
 		environment: "jsdom",
+		setupFiles: ["src/setup-tests.ts"],
 		include: ["src/**/*.{test,spec}.{js,ts}"]
 	},
 	plugins,

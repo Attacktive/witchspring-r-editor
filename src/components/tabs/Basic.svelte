@@ -106,5 +106,5 @@
 </div>
 <div class="my-2">
 	<Label>Current Pet</Label>
-	<Select bind:value={$saveData.nowPet} items={petOptions}/>
+	<Select bind:value={$saveData.nowPetID} items={petOptions}/>
 </div>

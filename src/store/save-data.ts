@@ -9,10 +9,24 @@ const createStore = () => {
 
 	const { set, subscribe } = saveDataStore;
 
+	const setWithMigration = (value: SaveData) => {
+		const raw = value as unknown as Record<string, unknown>;
+		if (raw.nowPetID === undefined && raw.nowPet !== undefined) {
+			raw.nowPetID = raw.nowPet;
+			delete raw.nowPet;
+		}
+
+		if (raw.nowPetID === "Ruka") {
+			raw.nowPetID = "Ruke";
+		}
+
+		set(value);
+	};
+
 	const reset = () => set(initialValue);
 
 	return {
-		set,
+		set: setWithMigration,
 		subscribe,
 		reset
 	};
