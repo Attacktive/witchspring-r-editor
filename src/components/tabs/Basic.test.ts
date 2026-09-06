@@ -21,7 +21,9 @@ describe(
 
 				mount(Basic, { target: container });
 				await tick();
+
 				const select = container.querySelector('select');
+
 				expect(select)
 					.not.toBeNull();
 
