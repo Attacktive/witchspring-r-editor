@@ -27,5 +27,5 @@ jobs:
         run: 'bun run check'
       - name: 'Run production build'
         env:
-          BASE_PATH: '/${{ github.event.repository.name }}'
+          BASE_PATH: /${{ github.event.repository.name }}
         run: 'bun run build'
