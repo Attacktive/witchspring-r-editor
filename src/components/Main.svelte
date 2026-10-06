@@ -7,7 +7,7 @@
 	import Items from "$/components/tabs/Items.svelte";
 	import StatsAugments from "$/components/tabs/StatsAugments.svelte";
 	import Spells from "$/components/tabs/Spells.svelte";
-	import nyancat from "$lib/assets/nyancat.gif";
+	import nyancat from "#lib/assets/nyancat.gif";
 
 	const textDecoder = new TextDecoder();
 

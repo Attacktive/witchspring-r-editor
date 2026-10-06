@@ -3,7 +3,7 @@
 	import { Button, Footer, FooterLink, FooterLinkGroup } from "flowbite-svelte";
 	import { CaretUpSolid } from "flowbite-svelte-icons";
 	import { saveDataJson } from "$/store/save-data";
-	import github from "$lib/assets/github.svg";
+	import github from "#lib/assets/github.svg";
 
 	interface Props {
 		children?: import("svelte").Snippet;

@@ -3,6 +3,9 @@
 	"version": "2.1.2",
 	"private": true,
 	"type": "module",
+	"imports": {
+		"#lib/*": "./src/lib/*"
+	},
 	"scripts": {
 		"dev": "vite dev --port 3000 --host",
 		"build": "vite build",
